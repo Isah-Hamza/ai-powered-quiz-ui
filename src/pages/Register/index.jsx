@@ -29,9 +29,9 @@ const Register = () => {
           </div>
           <div className="mt-10">
             <div className="flex flex-col gap-2">
-              <CustomInput label={"Name"} placeholder="johndoe@gmail.com" />
-              <CustomInput label={"Email"} placeholder="johndoe@gmail.com" />
-              <CustomInput label={"Phone"} placeholder="johndoe@gmail.com" />
+              <CustomInput label={"Name"} placeholder="John Doe" />
+              <CustomInput label={"Email"} placeholder="Johndoe@gmail.com" />
+              <CustomInput label={"Phone"} placeholder="+234 (706 5786 031)" />
               <CustomPasswordInput label={"Password"} />
             </div>
             <div className="mt-2.5"></div>

@@ -1,7 +1,7 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Dashboard from "./pages/Student/Dashboard";
 
 function App() {
   const routes = [
@@ -16,6 +16,10 @@ function App() {
     {
       path: "/register",
       component: Register,
+    },
+    {
+      path: "/dashboard",
+      component: Dashboard,
     },
   ];
 
