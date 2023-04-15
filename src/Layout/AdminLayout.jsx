@@ -3,15 +3,15 @@ import React from "react";
 import futLogo from "../assets/images/futminna_logo-removebg-preview.png";
 import avatar from "../assets/images/avatar.jpg";
 
-const Layout = ({ children }) => {
+const AdminLayout = ({ children }) => {
   const links = [
     {
-      title: "Take Exams",
-      url: null,
+      title: "Upload Question",
+      url: "dashboard",
     },
     {
-      title: "View Results",
-      url: "/dashboard/result",
+      title: "View Student",
+      url: "/view-student",
     },
   ];
 
@@ -49,8 +49,8 @@ const Layout = ({ children }) => {
                   <img src={avatar} className="w-full h-full" />
                 </div>
                 <div className="text-sm font-semibold flex flex-col">
-                  <span>Moses Liberty</span>
-                  <span className="-mt-1">Student</span>
+                  <span>John Doe</span>
+                  <span className="-mt-1">Administrator</span>
                 </div>
               </div>
             </div>
@@ -62,4 +62,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default AdminLayout;

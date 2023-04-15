@@ -1,9 +1,9 @@
 import React from "react";
-import Layout from "../../../Layout";
+import StudentLayout from "../../../Layout/StudentLayout";
 
 const Dashboard = () => {
   return (
-    <Layout>
+    <StudentLayout>
       <div className="p-5 pb-3 flex h-[calc(100vh-64px)]">
         <div className="flex flex-col flex-1 ">
           <p className="font-semibold mb-2">Exam Information</p>
@@ -50,7 +50,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </StudentLayout>
   );
 };
 

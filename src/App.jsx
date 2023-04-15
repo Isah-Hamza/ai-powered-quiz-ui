@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Student/Dashboard";
+import AdminDashboard from "./pages/Admin/Dashboard";
+import StudentResult from "./pages/Student/Result";
 
 function App() {
   const routes = [
@@ -18,8 +20,16 @@ function App() {
       component: Register,
     },
     {
-      path: "/dashboard",
+      path: "/student",
       component: Dashboard,
+    },
+    {
+      path: "/admin",
+      component: AdminDashboard,
+    },
+    {
+      path: "/student/result",
+      component: StudentResult,
     },
   ];
 
