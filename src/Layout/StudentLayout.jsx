@@ -5,6 +5,12 @@ import avatar from "../assets/images/avatar.jpg";
 
 const StudentLayout = ({ children }) => {
   const navigate = useNavigate();
+
+
+  const handleLogout = () => {
+    navigate("/login");
+  };
+
   const links = [
     {
       title: "Take Exams",
@@ -39,7 +45,7 @@ const StudentLayout = ({ children }) => {
                 </div>
               ))}
             </ul>
-            <button className="text-white bg-red-400 max-w-[250px] mx-auto mt-auto px-14 py-2 text-sm">
+            <button onClick={handleLogout} className="text-white bg-red-400 max-w-[250px] mx-auto mt-auto px-14 py-2 text-sm">
               LOGOUT
             </button>
           </div>

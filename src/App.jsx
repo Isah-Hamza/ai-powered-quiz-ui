@@ -4,6 +4,8 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Student/Dashboard";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import StudentResult from "./pages/Student/Result";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const routes = [
@@ -34,13 +36,16 @@ function App() {
   ];
 
   return (
-    <Router>
-      <Routes>
-        {routes.map((route, idx) => (
-          <Route key={idx} path={route.path} Component={route.component} />
-        ))}
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          {routes.map((route, idx) => (
+            <Route key={idx} path={route.path} Component={route.component} />
+          ))}
+        </Routes>
+      </Router>
+      <ToastContainer />
+    </>
   );
 }
 

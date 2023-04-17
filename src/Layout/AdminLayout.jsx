@@ -2,8 +2,10 @@ import React from "react";
 
 import futLogo from "../assets/images/futminna_logo-removebg-preview.png";
 import avatar from "../assets/images/avatar.jpg";
+import { useNavigate } from "react-router-dom";
 
 const AdminLayout = ({ children }) => {
+  const navigate = useNavigate();
   const links = [
     {
       title: "Upload Question",
@@ -14,6 +16,10 @@ const AdminLayout = ({ children }) => {
       url: "/view-student",
     },
   ];
+
+  const handleLogout = () => {
+    navigate("/login");
+  };
 
   return (
     <div className="flex w-full h-screen">
@@ -34,7 +40,7 @@ const AdminLayout = ({ children }) => {
                 </div>
               ))}
             </ul>
-            <button className="text-white bg-red-400 max-w-[250px] mx-auto mt-auto px-14 py-2 text-sm">
+            <button onClick={handleLogout} className="text-white bg-red-400 max-w-[250px] mx-auto mt-auto px-14 py-2 text-sm">
               LOGOUT
             </button>
           </div>
