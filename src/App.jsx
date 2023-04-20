@@ -6,6 +6,9 @@ import AdminDashboard from "./pages/Admin/Dashboard";
 import StudentResult from "./pages/Student/Result";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Instruction from "./pages/Student/Instruction";
+import ExamListing from "./pages/Student/ExamListing";
+import Score from "./pages/Student/Score";
 
 function App() {
   const routes = [
@@ -32,6 +35,18 @@ function App() {
     {
       path: "/student/result",
       component: StudentResult,
+    },
+    {
+      path: "/student/instruction",
+      component: Instruction,
+    },
+    {
+      path: "/student/exam-listing",
+      component: ExamListing,
+    },
+    {
+      path: "/student/score",
+      component: Score,
     },
   ];
 

@@ -14,7 +14,8 @@ const Login = () => {
 
   const handleLogin = async () => {
     if (
-      data.matric === "2023/1/00000CT" &&
+      data.matric.toLocaleLowerCase() ===
+        "2023/1/00000CT".toLocaleLowerCase() &&
       data.password.toLowerCase() === "admin"
     ) {
       navigate("/admin");
@@ -25,7 +26,9 @@ const Login = () => {
     await axios
       .post(apiEndpoints.LOGIN, data)
       .then((res) => {
-        navigate("/student");
+        window.localStorage.setItem("user-name", res.data.user.name);
+        window.localStorage.setItem("user-id", res.data.user._id);
+        navigate("/student/instruction");
         toast.success(res.data.message, { theme: "colored" });
       })
       .catch((e) => toast.error(e.response.data.message, { theme: "colored" }));

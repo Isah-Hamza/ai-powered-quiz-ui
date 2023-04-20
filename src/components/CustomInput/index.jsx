@@ -6,7 +6,7 @@ const CustomInput = ({
   defaultValue,
   label,
   onChange,
-  props,
+  ...rest
 }) => {
   return (
     <div>
@@ -17,7 +17,7 @@ const CustomInput = ({
         // defaultValue={defaultValue ?? ''}
         type={type ?? "text"}
         onChange={onChange ? onChange : null}
-        {...props}
+        {...rest}
       />
     </div>
   );

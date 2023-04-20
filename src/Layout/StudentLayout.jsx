@@ -5,7 +5,7 @@ import avatar from "../assets/images/avatar.jpg";
 
 const StudentLayout = ({ children }) => {
   const navigate = useNavigate();
-
+  const user_name = window.localStorage.getItem("user-name");
 
   const handleLogout = () => {
     navigate("/login");
@@ -13,8 +13,12 @@ const StudentLayout = ({ children }) => {
 
   const links = [
     {
+      title: "Instruction",
+      url: "/student/instruction",
+    },
+    {
       title: "Take Exams",
-      url: "/student",
+      url: "/student/exam-listing",
     },
     {
       title: "View Results",
@@ -45,7 +49,10 @@ const StudentLayout = ({ children }) => {
                 </div>
               ))}
             </ul>
-            <button onClick={handleLogout} className="text-white bg-red-400 max-w-[250px] mx-auto mt-auto px-14 py-2 text-sm">
+            <button
+              onClick={handleLogout}
+              className="text-white bg-red-400 max-w-[250px] mx-auto mt-auto px-14 py-2 text-sm"
+            >
               LOGOUT
             </button>
           </div>
@@ -60,7 +67,7 @@ const StudentLayout = ({ children }) => {
                   <img src={avatar} className="w-full h-full" />
                 </div>
                 <div className="text-sm font-semibold flex flex-col">
-                  <span>Moses Liberty</span>
+                  <span>{user_name ?? "Not Available"}</span>
                   <span className="-mt-1">Student</span>
                 </div>
               </div>

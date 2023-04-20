@@ -35,7 +35,7 @@ const AdminLayout = ({ children }) => {
             </div>
             <ul className="flex flex-col gap-1 mt-16">
               {links.map((link, idx) => (
-                <div className="cursor-pointer px-4 py-2.5 bg-cyan-700 max-w-xs">
+                <div key={idx} className="cursor-pointer px-4 py-2.5 bg-cyan-700 max-w-xs">
                   {link.title}
                 </div>
               ))}
