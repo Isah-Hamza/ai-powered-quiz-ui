@@ -71,36 +71,29 @@ const StudentResult = () => {
             <p className="border-b font-semibold text-lg">Result overview</p>
             <div className="w-full mt-3">
               {user.courses?.length ? (
-                <table className="w-full">
-                  <thead>
-                    <tr className="text-left">
-                      <th>Course Name</th>
-                      <th>Course Lecturer</th>
-                      <th>Date Taken</th>
-                      <th>Score </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>CPT 512</td>
-                      <td>Muhammad Ali</td>
-                      <td>2019-02-23</td>
-                      <td>80.7 </td>
-                    </tr>
-                    <tr>
-                      <td>CSS 522</td>
-                      <td>Kudu Muhammad Kudu</td>
-                      <td>2019-02-23</td>
-                      <td>78.5 </td>
-                    </tr>
-                    <tr>
-                      <td>IMT 522</td>
-                      <td>Zubairu Hassan</td>
-                      <td>2019-02-23</td>
-                      <td>60.0 </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <>
+                  <table className="w-full">
+                    <thead>
+                      <tr className="text-left">
+                        <th>Course Name</th>
+                        <th>Course Lecturer</th>
+                        <th>Date Taken</th>
+                        <th>Score </th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {user.courses.map((course) => (
+                        <tr>
+                          <td>{course.title}</td>
+                          <td>{course.lecturer}</td>
+                          <td>{moment(course.createdAt).format("LL")}</td>
+                          <td className={`font-medium ${course.score.score > 50 ? 'text-green-800' : 'text-[coral]'}`}>{course.score.score.toFixed(1)}%</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
               ) : (
                 <div className="text-center mt-20">
                   <p className="text-sm">NO course taken yet.</p>

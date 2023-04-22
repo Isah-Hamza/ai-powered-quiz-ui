@@ -80,7 +80,7 @@ const Login = () => {
           </div>
           <div className="mt-10">
             <CustomButton
-              // disabled={data.matric === "" || data.password === ""}
+              disabled={data.matric === "" || data.password === ""}
               onClick={handleLogin}
               text={"Login"}
             />

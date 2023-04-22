@@ -9,11 +9,11 @@ const AdminLayout = ({ children }) => {
   const links = [
     {
       title: "Upload Question",
-      url: "dashboard",
+      url: "/admin",
     },
     {
       title: "View Student",
-      url: "/view-student",
+      url: "/admin/view-student",
     },
   ];
 
@@ -35,12 +35,19 @@ const AdminLayout = ({ children }) => {
             </div>
             <ul className="flex flex-col gap-1 mt-16">
               {links.map((link, idx) => (
-                <div key={idx} className="cursor-pointer px-4 py-2.5 bg-cyan-700 max-w-xs">
+                <div
+                  onClick={() => navigate(link.url)}
+                  key={idx}
+                  className="cursor-pointer px-4 py-2.5 bg-cyan-700 max-w-xs"
+                >
                   {link.title}
                 </div>
               ))}
             </ul>
-            <button onClick={handleLogout} className="text-white bg-red-400 max-w-[250px] mx-auto mt-auto px-14 py-2 text-sm">
+            <button
+              onClick={handleLogout}
+              className="text-white bg-red-400 max-w-[250px] mx-auto mt-auto px-14 py-2 text-sm"
+            >
               LOGOUT
             </button>
           </div>

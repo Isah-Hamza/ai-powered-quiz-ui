@@ -32,7 +32,7 @@ const Score = ({}) => {
               src={closeIcon}
               className="absolute top-3 right-3 cursor-pointer w-5"
             /> */}
-            <div className="flex justify-center">
+            <div className="flex justify-center w-52 mx-auto">
               <img src={success} alt="success" className="w-52" />
             </div>
             <p className="text-center">
@@ -48,7 +48,7 @@ const Score = ({}) => {
                   result.score > 50 ? "text-green-700" : "text-[coral]"
                 }`}
               >
-                {result.score?.toFixed(2)}
+                {result.score?.toFixed(1)}%
               </p>
             </div>
             <div className="flex justify-center">

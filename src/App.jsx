@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Instruction from "./pages/Student/Instruction";
 import ExamListing from "./pages/Student/ExamListing";
 import Score from "./pages/Student/Score";
+import ViewStudents from "./pages/Admin/ViewStudents";
 
 function App() {
   const routes = [
@@ -31,6 +32,10 @@ function App() {
     {
       path: "/admin",
       component: AdminDashboard,
+    },
+    {
+      path: "/admin/view-student",
+      component: ViewStudents,
     },
     {
       path: "/student/result",

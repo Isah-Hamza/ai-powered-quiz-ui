@@ -10,7 +10,7 @@ const CustomButton = ({ text, onClick, type, disabled }) => {
       className=" disabled:bg-opacity-60 disabled:hover:bg-blue-300 disabled:cursor-not-allowed flex items-center w-full justify-center gap-3 rounded group text-white bg-blue-500 hover:bg-green-400 py-2.5 px-10 "
     >
       <span>{text ?? "Fancy Button"}</span>
-      <div className="flex items-center gap-1 group-hover:translate-x-2 transition-all duration-300 ease-in-out">
+      <div className="flex items-center gap-1 group-hover:translate-x-[3px] transition-all duration-300 ease-in-out">
         <MdOutlineKeyboardDoubleArrowRight />
       </div>
     </button>

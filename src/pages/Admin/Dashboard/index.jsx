@@ -26,6 +26,7 @@ const AdminDashboard = () => {
     duration: Yup.string().required(),
     instruction: Yup.string().required(),
     session: Yup.string().required(),
+    strict: Yup.boolean().required(),
   });
 
   const handlePostQuestion = async (data) => {
@@ -59,6 +60,7 @@ const AdminDashboard = () => {
       duration: "",
       instruction: "",
       session: "",
+      strict: false,
       qa: [],
     },
     validationSchema,
@@ -82,7 +84,7 @@ const AdminDashboard = () => {
         item.keywords = obj;
         console.log("first", item);
       });
-      console.log('values ', values);
+      console.log("values ", values);
       handlePostQuestion(values);
     },
   });
@@ -174,7 +176,8 @@ const AdminDashboard = () => {
               </div>
               <div>
                 <CustomInput
-                  label={"Exam duration (in hrs)"}
+                  type={"Number"}
+                  label={"Exam duration (in mins)"}
                   {...getFieldProps("duration")}
                 />
                 {touched.duration && errors.duration && (
@@ -199,6 +202,34 @@ const AdminDashboard = () => {
                   <Error text={errors.instruction} />
                 )}
               </div>
+              <div className=" mt-3">
+                <p className="font-semibold mb-1">Strict</p>
+                <div className="flex gap-2 items-center">
+                  <div>
+                    <input
+                      className="mr-1"
+                      type="radio"
+                      id="false"
+                      name="strict"
+                      {...getFieldProps("strict")}
+                    />
+                    <label htmlFor="false">False</label>
+                  </div>{" "}
+                  <div>
+                    <input
+                      className="mr-1"
+                      type="radio"
+                      id="true"
+                      name="strict"
+                      {...getFieldProps("strict")}
+                    />
+                    <label htmlFor="true">True</label>
+                  </div>
+                  {touched.strict && errors.strict && (
+                    <Error text={errors.strict} />
+                  )}
+                </div>
+              </div>
             </div>
           </div>
           <div className=" w-full mt-5 mb-6">
@@ -217,9 +248,7 @@ const AdminDashboard = () => {
                     }))
                   }
                   defaultValue={questions[currentQuestion]?.question ?? ""}
-                >
-                  {"howfar"}
-                </textarea>
+                ></textarea>
               </div>
               <div className="">
                 <p className="font-semibold">Answer</p>
@@ -251,49 +280,6 @@ const AdminDashboard = () => {
                   }
                   defaultValue={questions[currentQuestion]?.keywords}
                 />
-              </div>
-              <div className=" mt-3">
-                <p className="font-semibold mb-1">Strict</p>
-                <div className="flex gap-2 items-center">
-                  <div>
-                    <input
-                      className="mr-1"
-                      type="radio"
-                      id="false"
-                      value={false}
-                      checked={questions[currentQuestion]?.strict ?? true}
-                      onChange={(e) => {
-                        setQuestion((prev) => ({
-                          ...prev,
-                          strict: e.target.value,
-                        }));
-                        setStrict(false);
-                        setFieldValue("qa[0].strict", false);
-                      }}
-                      // {...getFieldProps("qa[0].strict")}
-                    />
-                    <label htmlFor="false">False</label>
-                  </div>{" "}
-                  <div>
-                    <input
-                      className="mr-1"
-                      type="radio"
-                      id="true"
-                      value={true}
-                      checked={questions[currentQuestion]?.strict ?? false}
-                      onChange={(e) => {
-                        setQuestion((prev) => ({
-                          ...prev,
-                          strict: e.target.value,
-                        }));
-                        setStrict(true);
-                        setFieldValue("qa[0].strict", true);
-                      }}
-                      // {...getFieldProps("qa[0].strict")}
-                    />
-                    <label htmlFor="true">True</label>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

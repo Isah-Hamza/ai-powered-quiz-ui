@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import StudentLayout from "../../../Layout/StudentLayout";
 import axios from "axios";
@@ -7,8 +7,8 @@ import { ImSpinner2 } from "react-icons/im";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 import { toast } from "react-toastify";
-import success from "../../../assets/images/undraw_agree_re_hor9.png";
-import closeIcon from "../../../assets/images/icons8-close-48.png";
+import clock from "../../../assets/images/icons8-time-80.png";
+import CountdownTimer from "../../../components/CountdownTimer";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
@@ -19,6 +19,7 @@ const Dashboard = () => {
   const [result, setResult] = useState({});
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const submitRef = useRef(null);
 
   const { duration, instruction, qa = [], lecturer, session } = question;
   const { title, id } = useLocation().state;
@@ -92,6 +93,21 @@ const Dashboard = () => {
     }
   };
 
+  const timeUp = () => {
+    qa?.map((item) => {
+      if (!item.user_answer) {
+        item.user_answer = "";
+      }
+    });
+
+    const payload = {
+      answer: qa,
+      id: window.localStorage.getItem("user-id"),
+    };
+
+    submitAnswer({ title, payload });
+  };
+
   useEffect(() => {
     qa?.map((item, idx) => {
       if (idx === currentQst) item.user_answer = answer;
@@ -116,7 +132,8 @@ const Dashboard = () => {
         </div>
       ) : (
         <div className="p-5 pb-3 flex h-[calc(100vh-64px)]">
-          <div className="flex flex-col flex-1 ">
+          <div className="flex flex-col flex-1 relative">
+            <CountdownTimer minutes={Number(duration)} timeUp={timeUp} />
             <p className="font-semibold mb-2">Exam Information</p>
             <div className="flex gap-1">
               <p className="font-medium">{"Subject =>"}</p>
@@ -127,12 +144,16 @@ const Dashboard = () => {
               <p>{moment(new Date()).format("LL")}</p>
             </div>
             <div className="flex gap-1">
-              <p className="font-medium">{"Session =>"}</p>
-              <p>{session}</p>
+              <p className="font-medium">{"Course Lecturer =>"}</p>
+              <p>{lecturer}</p>
             </div>
             <div className="flex gap-1">
               <p className="font-medium">{"Instruction =>"}</p>
               <p className="first-letter:capitalize">{instruction}</p>
+            </div>
+            <div className="flex gap-1">
+              <p className="font-medium">{"Total Questions =>"}</p>
+              <p className="first-letter:capitalize">{qa?.length}</p>
             </div>
             <div className="mt-8">
               <p className="font-semibold">Question {currentQst + 1}.</p>
@@ -162,6 +183,7 @@ const Dashboard = () => {
               ) : null}
               {qa.length == currentQst + 1 ? (
                 <button
+                  ref={submitRef}
                   disabled={submitting}
                   onClick={handleSubmit}
                   className="text-white disabled:bg-opacity-50 bg-green-800 w-28 rounded py-2 text-sm"
@@ -170,8 +192,9 @@ const Dashboard = () => {
                 </button>
               ) : (
                 <button
+                  disabled={submitting}
                   onClick={handleNext}
-                  className="text-white bg-green-800 w-28 rounded py-2 text-sm"
+                  className="text-white disabled:bg-opacity-50 bg-green-800 w-28 rounded py-2 text-sm"
                 >
                   Next
                 </button>

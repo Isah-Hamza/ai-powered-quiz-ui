@@ -40,6 +40,12 @@ const ExamListing = () => {
             <div className="h-[calc(100vh-64px)] w-full grid place-content-center text-center">
               <p className="font-semibold">No Exam Found at the minute.</p>
               <p>Keep Refreshing the page or Contact Admin for Support</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="text-white text-xs bg-green-800 w-24 rounded py-1.5  font-medium  mt-1 m-auto"
+              >
+                REFRESH
+              </button>
             </div>
           ) : (
             <div className="p-5 pb-3 flex h-[calc(100vh-64px)]">
@@ -54,7 +60,7 @@ const ExamListing = () => {
                     >
                       <p className="text-center">Title: {qst.title}</p>
                       <p className="text-center -mt-1 mb-2">
-                        Duration: {qst?.duration} hr(s)
+                        Duration: {qst?.duration} mins
                       </p>
                       <div className="mt-auto flex justify-center">
                         <button
